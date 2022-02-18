@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+
+   
+import Sidebar from "./components/sidebar/Sidebar";
+import Topbar from "./components/topbar/Topbar";
+import "./app.css";
+import Home from './Pages/Home/Home'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UserList from './Pages/UserList/UserList'
+import User from "./Pages/User/User";
+import RealtimeReports from "./Pages/RealtimeReports/RealtimeReports";
+import ImageUpload from "./Pages/ImageUpload/ImageUpload";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  
+    <Router>
+      <Topbar />
+      <div className="container">
+        <Sidebar />
+        <Routes>
+        <Route exact path="/" element={<Home />} />
+         <Route  path="/users" element={<UserList />} />
+         <Route  path="/user/:userId" element={<User/>} /> 
+         <Route path="/realtime" element={<RealtimeReports />} />
+         <Route path='/upload'  element={<ImageUpload />} />
+        </Routes>
+      </div>
+    </Router>
+  
   );
 }
 
